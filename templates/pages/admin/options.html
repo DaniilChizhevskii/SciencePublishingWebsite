@@ -1,0 +1,25 @@
+{% extends "components/base.html" %}
+{% set is_admin=True %}
+{% set is_options=True %}
+{% block title %}Options{% endblock %}
+{% block body %}
+  <h1 class="text-center">Options</h1>
+  <form method="POST">
+    {% for option in editable_options %}
+      <div class="mb-3">
+        <label class="form-label">{{ option.description }}:</label>
+        {% if option.structure == 'int' %}
+          <input class="form-control" type="number" name="{{ option.name }}" value="{{ option.value }}" step="1" required>
+        {% elif option.structure == 'float' %}
+          <input class="form-control" type="number" name="{{ option.name }}" value="{{ option.value }}" required>
+        {% else %}
+          <input class="form-control" type="text" name="{{ option.name }}" value="{{ option.value }}" required>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <button class="btn btn-secondary mb-5" type="submit">
+      <i data-feather="save"></i>
+      Save
+    </button>
+  </form>
+{% endblock %}

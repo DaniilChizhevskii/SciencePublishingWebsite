@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}None{% endblock %} - {{ options.company_name }}</title>
+    <link rel="shortcut icon" href="/static/img/icon.ico">
+    <link rel="stylesheet" type="text/css" href="/static/css/theme.css">
+    {% block custom_head %}
+      {% include "components/custom_head.html" %}
+    {% endblock %}
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    {% if is_admin %}
+      {% include "components/admin/header.html"%}
+    {% else %}
+      {% include "components/header.html"%}
+    {% endif %}
+    <section class="container mt-5 main-section">
+      {% block body %}{% endblock %}
+    </section>
+    {% include "components/footer.html"%}
+    {% block custom_footer %}
+      {% include "components/custom_footer.html" %}
+    {% endblock %}
+  </body>
+</html>

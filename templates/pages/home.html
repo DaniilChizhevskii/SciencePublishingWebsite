@@ -1,0 +1,7 @@
+{% extends "components/base.html" %}
+{% set is_home=True %}
+{% block title %}Home{% endblock %}
+{% block body %}
+  <h1 class="text-center pb-5">{{ options.company_name }}</h1>
+  {{ options.home_block | safe }}
+{% endblock %}

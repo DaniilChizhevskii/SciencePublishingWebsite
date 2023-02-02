@@ -1,0 +1,7 @@
+{% extends "components/base.html" %}
+{% set is_help=True %}
+{% block title %}Help{% endblock %}
+{% block body %}
+  <h1 class="text-center">Help</h1>
+  {{ options.help_block | safe }}
+{% endblock %}

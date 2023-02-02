@@ -1,0 +1,26 @@
+<header class="p-3 mb-3 border-bottom sticky-top bg-light">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start me-lg-auto">
+      <a href="/admin/orders" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+        <img src="/static/img/icon.png" height="40px" class="d-none d-sm-block">
+      </a>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 ps-5 pe-5">
+        <li><a href="/admin/orders" class="nav-link px-2 link-{% if is_orders %}secondary{% else %}dark{% endif %}"><i data-feather="book"></i> Orders</a></li>
+        <li><a href="/admin/options" class="nav-link px-2 link-{% if is_options %}secondary{% else %}dark{% endif %}"><i data-feather="settings"></i> Options</a></li>
+        <li><a href="/admin/texts" class="nav-link px-2 link-{% if is_texts %}secondary{% else %}dark{% endif %}"><i data-feather="file-text"></i> Texts</a></li>
+      </ul>
+
+      <div class="col-md-3 text-end">
+        <a href="/" target="_blank" class="btn btn-secondary">
+          Open website
+          <i data-feather="external-link"></i>
+        </a>
+        <a href="/admin/logout" class="btn btn-secondary">
+          Logout
+          <i data-feather="log-out"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

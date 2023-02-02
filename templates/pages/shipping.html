@@ -1,0 +1,27 @@
+{% extends "components/base.html" %}
+{% set is_publish=True %}
+{% block title %}Shipping{% endblock %}
+{% block body %}
+  <h1 class="text-center pb-5">Shipping Details</h1>
+  <h4>Your order</h4>
+  <p class="text-muted">1 {{ {'ebook': 'E-Book', 'paperbook': 'Paper Book'}[order.format] }} for ${{ order.price }}</p>
+  <p class="text-muted">Payment method &mdash; PayPal</p>
+  <hr>
+  <form method="POST">
+    <div class="row">
+      <div class="form-group col-md-6 mb-3">
+        <input class="form-control" type="text" name="first_name" placeholder="First Name" required>
+      </div>
+      <div class="form-group col-md-6 mb-3">
+        <input class="form-control" type="text" name="last_name" placeholder="Last Name" required>
+      </div>
+    </div>
+    <div class="form-group col-md-12 mb-3">
+      <input class="form-control" type="email" name="email" placeholder="Email Address" required>
+    </div>
+    <button class="btn btn-secondary" type="submit">
+      Continue
+      <i data-feather="arrow-right"></i>
+    </button>
+  </form>
+{% endblock %}

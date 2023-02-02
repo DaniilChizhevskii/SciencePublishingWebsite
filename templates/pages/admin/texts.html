@@ -1,0 +1,19 @@
+{% extends "components/base.html" %}
+{% set is_admin=True %}
+{% set is_texts=True %}
+{% block title %}Texts{% endblock %}
+{% block body %}
+  <h1 class="text-center">Texts</h1>
+  <form method="POST">
+    {% for text in texts %}
+      <div class="mb-3">
+        <label class="form-label">{{ text.description }}:</label>
+        <textarea class="form-control font-monospace" rows="20" name="{{ text.name }}">{{ text.value }}</textarea>
+      </div>
+    {% endfor %}
+    <button class="btn btn-secondary mb-5" type="submit">
+      <i data-feather="save"></i>
+      Save
+    </button>
+  </form>
+{% endblock %}

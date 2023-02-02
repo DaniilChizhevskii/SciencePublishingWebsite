@@ -1,0 +1,11 @@
+{% extends "components/base.html" %}
+{% block title %}{{ error_code }}{% endblock %}
+{% block body %}
+  <h1 class="text-center pb-5">{{ error_code }} &mdash; {{ error_title }}</h1>
+  <p class="text-center">{{ error_description | safe }}</p>
+  {% if is_admin %}
+    <p class="text-center"><a href="/admin/orders" class="btn btn-secondary"><i data-feather="book"></i> Back to Orders</a></p>
+  {% else %}
+    <p class="text-center"><a href="/" class="btn btn-secondary"><i data-feather="home"></i> Home</a></p>
+  {% endif %}
+{% endblock %}

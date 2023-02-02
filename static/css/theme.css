@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+header, footer, h1, .btn {
+  font-family: 'Roboto Mono', monospace !important;
+}
+
+.text-indent {
+  text-indent: 1.5rem;
+}
+
+.grecaptcha-badge { 
+  visibility: hidden;
+}

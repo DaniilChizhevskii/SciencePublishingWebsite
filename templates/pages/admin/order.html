@@ -1,0 +1,67 @@
+{% extends "components/base.html" %}
+{% set is_admin=True %}
+{% set is_orders=True %}
+{% block title %}Order #{{ order.id }}{% endblock %}
+{% block body %}
+  <h1 class="text-center">
+    Order #{{ order.id }}
+    {% if order.status != 'done' %}
+      <a class="btn btn-secondary" href="/admin/orders/{{ order.id }}/done">
+        <i data-feather="check-circle"></i>
+        Mark As Done
+      </a>
+    {% endif %}
+  </h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 0px;"></th>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Status</th>
+        <td>
+          {% if order.status == 'shipping' %}
+            Waiting for info
+          {% elif order.status == 'payment' %}
+            Waiting for payment
+          {% elif order.status == 'paid' %}
+            Waiting for you
+          {% else %}
+            Done
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Format</th>
+        <td>{{ {'ebook': 'E-Book', 'paperbook': 'Paper Book'}[order.format] }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Price</td>
+        <td>${{ order.price }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Creation&nbsp;Date</td>
+        <td>{{ order.created.strftime('%Y-%m-%d %H:%M') }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Publication&nbsp;Date</td>
+        <td>{{ order.publication_date.strftime('%Y-%m-%d') }}</td>
+      </tr>
+      <tr>
+        <th scope="row">PDF</td>
+        <td>
+          <a href="/admin/orders/{{ order.id }}.pdf" class="text-muted " download>Download</a>
+        </td>
+      </tr>
+      {% for row in order.customer_details %}
+        <tr>
+          <th scope="row">{{ row[0] }}</td>
+          <td>{{ row[1] }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

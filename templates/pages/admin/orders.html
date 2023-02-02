@@ -1,0 +1,61 @@
+{% extends "components/base.html" %}
+{% set is_admin=True %}
+{% set is_orders=True %}
+{% block title %}Orders{% endblock %}
+{% block body %}
+  <h1 class="text-center pb-5">Orders</h1>
+  {% if orders %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <td>Status</td>
+          <td class="d-none d-sm-table-cell">Format</td>
+          <td class="d-none d-sm-table-cell">Price</td>
+          <td class="text-end d-none d-sm-table-cell">Creation Date</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+          <tr>
+            <th scope="row" class="font-monospace">{{ order.id }}</th>
+            <td>
+              {% if order.status == 'shipping' %}
+                <i data-feather="minus-circle"></i> Waiting for info
+              {% elif order.status == 'payment' %}
+                <i data-feather="minus-circle"></i> Waiting for payment
+              {% elif order.status == 'paid' %}
+                <i data-feather="clock"></i> Waiting for you
+              {% else %}
+                <i data-feather="check-circle"></i> Done
+              {% endif %}
+            </td>
+            <td class="d-none d-sm-table-cell">{{ {'ebook': 'E-Book', 'paperbook': 'Paper Book'}[order.format] }}</td>
+            <td class="font-monospace d-none d-sm-table-cell">${{ order.price }}</td>
+            <td class="text-end d-none d-sm-table-cell">{{ order.created.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td class="text-end"><a href="/admin/orders/{{ order.id }}" class="btn btn-sm btn-secondary"><i data-feather="eye"></i> Open</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="row pb-4 pt-3">
+      <div class="col-6">
+        {% if pages_before %}
+          <a class="btn btn-sm btn-secondary" href="?page={{ page - 1 }}">
+            <i data-feather="arrow-left"></i> Previous Page
+          </a>
+        {% endif %}
+      </div>
+      <div class="col-6 text-end">
+        {% if pages_after %}
+          <a class="btn btn-sm btn-secondary" href="?page={{ page + 1 }}">
+            Next Page <i data-feather="arrow-right"></i>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  {% else %}
+    <h5 class="text-center text-muted">No orders yet. Wait and they will appear!</h5>
+  {% endif %}
+{% endblock %}

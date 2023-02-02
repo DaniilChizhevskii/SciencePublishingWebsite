@@ -1,0 +1,7 @@
+{% extends "components/base.html" %}
+{% set is_about=True %}
+{% block title %}About{% endblock %}
+{% block body %}
+  <h1 class="text-center pb-5">About Us</h1>
+  {{ options.about_block | safe }}
+{% endblock %}
